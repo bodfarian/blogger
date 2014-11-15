@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
   root 'articles#index'
+  # line below added to allow access to view using "tags/index" in URI - otherwise 
+  # attempts to find a tag with id of "index"
+  get 'tags/index' => 'tags#index'
   resources :articles do
     resources :comments
   end
+
+  resources :tags
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
